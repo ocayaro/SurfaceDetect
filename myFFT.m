@@ -15,7 +15,8 @@ n=length(fft_in);
 t=fft_in(1:n,1);
 y=fft_in(1:n,2);
 
-yy=y-average(y); % this is the approximate average location. I am doing this to increase the  
+av = sum(y)/size(y,1);
+yy=y-av;         %% this is the approximate average location. I am doing this to increase the  
                  %% height of the FFT plots any other would not change the frequency, but 
                  %% only decrease the height. This is to make the plots easier to see.
 

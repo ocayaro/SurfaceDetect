@@ -12,15 +12,15 @@
 %% 
 load -ascii fft_in.txt x y;   % assuming data is in two columns, time and amplitude
 n=length(fft_in);
-t=fft_in(1:n,1);
+t=fft_in(1:n,1)*2;
 y=fft_in(1:n,2);
 
-av = sum(y)/size(y,1);
-yy=y-av;         %% this is the approximate average location. I am doing this to increase the  
-                 %% height of the FFT plots any other would not change the frequency, but 
-                 %% only decrease the height. This is to make the plots easier to see.
+av=sum(y)/length(y);
+yy=y-av;      % this is the approximate average location. I am doing this to increase the  
+                %% height of the FFT plots any other would not change the frequency, but 
+                %% only decrease the height. This is to make the plots easier to see.
 
-plot(t,y)        % show the raw amplitude vs time data
+plot(t,y)       % show the raw amplitude vs time data
 
 dt=t(2)-t(1);
 N=length(t);
@@ -30,6 +30,7 @@ f=-fs/2:df:fs/2;
 
 ytran = abs(fft(yy)); % compute the FFT transform of the signal amplitudes
 
+figure(2);
 plot(f,ytran) % plot the phases versus frequency
 f= transpose(f); % put in single column format to save into ASCII file
 
